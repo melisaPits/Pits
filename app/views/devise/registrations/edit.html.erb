@@ -1,0 +1,49 @@
+<h2>Editar <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :nombre, "Nombre completo" %>
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= f.label :celular, "Celular" %>
+    <%= f.text_field :celular%>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="field">
+        <%= f.label :"Contraseña actual" %><br />
+        <%= f.password_field :current_password, autocomplete: "new-password", placeholder: "Deja este campo en blanco a menos que desees cambiar la contraseña" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"Nueva constraseña" %><br />
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Deja este campo en blanco a menos que desees cambiar la contraseña" %>
+        <% if @minimum_password_length %>
+          <br />
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"Confirmar contraseña" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Deja este campo en blanco a menos que desees cambiar la contraseña" %>
+      </div>
+    </div>
+  </div>
+
+  
+
+    
+
+     
+
+  <div class="actions">
+    <%= f.submit "Actualizar", class: 'btn' %>
+  </div>
+<% end %>
+
+<%= link_to "Atras", :back %>

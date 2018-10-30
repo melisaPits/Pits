@@ -1,0 +1,922 @@
+ <div class="row">
+      <div class="col s12">
+            <h2>Orden de ingreso</h2>
+      </div>
+ </div>
+ <div class="hidden" hidden="hidden">
+       <input type="text" id="token" value="<%= @c_user.token.token %>">
+       <input type="text" id="usuario" value="<%= @c_user.id %>">
+       <input type="text" id="siniestro" value="<%= @siniestro.id %>">
+       <input type="text" id="urlFotos" value="<%= api_v1_fotos_autos_path %>">
+       <input type="text" id="urlInventarios" value="<%= api_v1_inventarios_path %>">
+       <input type="text" id="urlExtras" value="<%= api_v1_extras_path %>">
+ </div>
+ <div class="row">
+      <div class="col s6">
+            <div class="field">
+                  Número Orden:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.noOrden + '/' + @siniestro.noSiniestro %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+            <div class="field">
+                  Asesor:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.usuario.nombre %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+            <div class="field">
+                  Cliente:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.cliente.Nombre %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+            <div class="field">
+                  Dirección:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.cliente.Direccion %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+            <div class="field">
+                  E-mail:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.cliente.Correo %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+            <div class="field">
+                  Telefono:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.cliente.Telefono %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+      </div>
+      <div class="col s6">
+            <div class="field">
+                  Placas:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.auto.Placas %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+            <div class="field">
+                  VIN:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.auto.Vin %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+            <div class="field">
+                  Aseguradora:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.aseguradora.nombre %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+            <div class="field">
+                  Entrada:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.fechaEntrada %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+             <div class="field">
+                  Salida:
+                  <div class="input-field inline">
+                        <input disabled value="<%= @siniestro.fechaSalida %>" id="orden" type="text" class="validate">
+                  </div>
+            </div>
+      </div>
+</div>
+
+<div class="row">
+      <div class="col s4">
+            <div class="row">
+                  <div class="col s12">
+                        <h2>Exteriores</h2>
+                        <%@inventarioExteriores.each do |i| %>
+                              <p>
+                                    <label>
+                                          <% if @inventarios.find_by(inventario_id: i.id).nil? %>
+                                                <input  type="checkbox" name="inventarios[]" class="filled-in" value="<%= i.id %>" >
+                                          <% else %>
+                                                <input  type="checkbox" checked="checked" name="inventarios[]" class="filled-in" value="<%= i.id %>" >
+                                          <% end %>
+                                          <span><%= i.nombre %></span>
+                                    </label>
+                              </p>
+                        <% end %>
+                  </div>
+            </div>
+            <div class="row">
+                  <div class="col s12">
+                        <h2>Interiores</h2>
+                        <%@inventarioInteriores.each do |i| %>
+                              <p>
+                                    <label>
+                                          <% if @inventarios.find_by(inventario_id: i.id).nil? %>
+                                          <input  type="checkbox" name="inventarios[]" class="filled-in" value="<%= i.id %>">
+                                          <% else %>
+                                                <input  type="checkbox" checked="checked" name="inventarios[]" class="filled-in" value="<%= i.id %>" >
+                                          <% end %>
+                                          <span><%= i.nombre %></span>
+                                    </label>
+                              </p>
+                        <% end %>
+                  </div>
+            </div>
+            <div class="row">
+                  <div class="col s12">
+                        <h2>Mecanica</h2>
+                        <%@inventarioMecanica.each do |i| %>
+                              <p>
+                                    <label>
+                                          <% if @inventarios.find_by(inventario_id: i.id).nil? %>
+                                          <input  type="checkbox" name="inventarios[]" class="filled-in" value="<%= i.id %>">
+                                          <% else %>
+                                                <input  type="checkbox" checked="checked" name="inventarios[]" class="filled-in" value="<%= i.id %>" >
+                                          <% end %>
+                                          <span><%= i.nombre %></span>
+                                    </label>
+                              </p>
+                        <% end %>
+                  </div>
+            </div>
+            <div>
+                  <button class="btn" id="inventGuardar">
+                        Guardar                        
+                  </button>
+            </div>
+            <% if @extra.nil? %>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="kilometraje"> KM:</label>
+                                    <input type="text" id="kilometraje" name="kilometraje" value=""/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="bateria"> Bateria:</label>
+                                    <input type="text" id="bateria" name="bateria" value=""/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="num_tapetes"> N° de tapetes:</label>
+                                    <input type="text" id="num_tapetes" name="num_tapetes" value=""/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="gasolina_litros"> Gasolina:</label>
+                                    <input type="text" id="gasolina_litros" name="gasolina_litros" value=""/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="comentarios"> Comentarios:</label>
+                                    <input type="text" id="comentarios" name="comentarios" value=""/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="descr_gral"> Descripción general:</label>
+                                    <input type="text" id="descr_gral" name="descr_gral" value=""/>
+                              </p>
+                        </div>
+                  </div>
+            <% else %>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="kilometraje"> KM:</label>
+                                    <input type="text" id="kilometraje" name="kilometraje" value="<%= @extra.kilometraje %>"/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="bateria"> Bateria:</label>
+                                    <input type="text" id="bateria" name="bateria" value="<%= @extra.bateria %>"/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="num_tapetes"> N° de tapetes:</label>
+                                    <input type="text" id="num_tapetes" name="num_tapetes" value="<%= @extra.num_tapetes %>"/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="gasolina_litros"> Gasolina:</label>
+                                    <input type="text" id="gasolina_litros" name="gasolina_litros" value="<%= @extra.gasolina_litros %>"/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="comentarios"> Comentarios:</label>
+                                    <input type="text" id="comentarios" name="comentarios" value="<%= @extra.comentarios %>"/>
+                              </p>
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="col s12">
+                              <p>
+                                    <label for="descr_gral"> Descripción general:</label>
+                                    <input type="text" id="descr_gral" name="descr_gral" value="<%= @extra.descr_gral %>"/>
+                              </p>
+                        </div>
+                  </div>
+            <% end %>
+            <div>
+                  <button class="btn" id="extrasGuardar">
+                        Guardar                        
+                  </button>
+            </div>
+      </div>
+      <div class="col s8">
+            <h2>Panoramicas</h2>
+            <div class="row">
+                  <div class="col s4">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "01.png", id: "f1_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 1} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "01.png", id: "f1_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f1_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f1">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s4">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "02.png", id: "f2_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 2} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "02.png", id: "f2_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f2_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn"
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f2" >
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>                        
+                  </div>
+                  <div class="col s4">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "03.png", id: "f3_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 3} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "03.png", id: "f3_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f3_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f3">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+            </div>
+            <div class="row">
+                  <div class="col s4">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "04.png", id: "f4_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 4} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "04.png", id: "f4_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id:"f4_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f4">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s4">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "05.png", id: "f5_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 5} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "05.png", id: "f5_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f5_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f5" >
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>                        
+                  </div>
+                  <div class="col s4">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "06.png", id: "f6_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 6} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "06.png", id: "f6_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f6_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f6">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+            </div>
+            <h2>Lateral izquierdo</h2>
+            <div class="row">
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "07.png", id: "f7_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 7} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "07.png", id: "f7_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f7_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f7" >
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "08.png", id: "f8_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 8} %>
+                                          <% if f[0].nil? %>
+                                                 <%= image_tag "08.png", id: "f8_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f8_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f8">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>                        
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "09.png", id: "f9_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 9} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "09.png", id: "f9_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f9_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f9">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "10.png", id: "f10_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 10} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "10.png", id: "f10_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f10_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f10">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+            </div>
+            <h2>Traseras</h2>
+            <div class="row">
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                   <% if @fotos.nil? %>
+                                          <%= image_tag "11.png", id: "f11_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 11} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "11.png", id: "f11_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f11_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f11">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "12.png", id: "f12_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 12} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "12.png", id: "f12_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f12_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f12">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>                        
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "13.png", id: "f13_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 13} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "13.png", id: "f13_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f13_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f13">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "14.png", id: "f14_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 14} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "14.png", id: "f14_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f14_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f14">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+            </div>
+            <h2>Lateral derecho</h2>
+            <div class="row">
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "15.png", id: "f15_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 15} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "15.png", id: "f15_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f15_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f15">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "16.png", id: "f16_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 16} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "16.png", id: "f16_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f16_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f16">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>                        
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "17.png", id: "f17_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 17} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "17.png", id: "f17_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f17_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f17">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "18.png", id: "f18_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 18} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "18.png", id: "f18_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f18_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f18">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+            </div>
+            <h2>Frontal</h2>
+            <div class="row">
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "19.png", id: "f19_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 19} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "19.png", id: "f19_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f19_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f19">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                         <%= image_tag "20.png", id: "f20_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 20} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "20.png", id: "f20_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f20_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f20">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>                        
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "21.png", id: "f21_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 21} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "21.png", id: "f21_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f21_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f21">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "22.png", id: "f22_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 22} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "22.png", id: "f22_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f22_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f22">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+            </div>
+            <h2>Cajuela, interior y motor</h2>
+            <div class="row">
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                   <% if @fotos.nil? %>
+                                          <%= image_tag "23.png", id: "f23_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 23} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "23.png", id: "f23_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f23_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f23">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "24.png", id: "f24_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 24} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "24.png", id: "f24_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f24_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="f24">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>                        
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "25.png", id: "f25_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 25} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "25.png", id: "f25_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f25_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="25">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+                  <div class="col s3">
+                        <div class="card">
+                              <div class="card-image">
+                                    <% if @fotos.nil? %>
+                                          <%= image_tag "26.png", id: "f26_img" %>
+                                    <% else %>
+                                          <% f = @fotos.select{|x| x.tipo == 26} %>
+                                          <% if f[0].nil? %>
+                                                <%= image_tag "26.png", id: "f26_img" %>
+                                          <% else %>
+                                                <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f26_img" %>
+                                          <% end %>
+                                    <% end %>
+                              </div>
+                              <div class="card-content file-field input-field">
+                                    <div class="btn" accept="image/*;capture=camera">
+                                          <span>Foto</span>
+                                          <input type="file" accept="image/*;capture=camera" id="26">
+                                    </div>
+                                    <div class="file-path-wrapper" hidden="hidden">
+                                          <input type="text" class="file-path">
+                                    </div>
+                              </div>
+                        </div>  
+                  </div>
+            </div>
+      </div>
+</div>   

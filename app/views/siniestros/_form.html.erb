@@ -1,0 +1,108 @@
+<%= form_for([@siniestro]) do |f| %>
+	<% if @siniestro.errors.any? %>
+		<div class="alert">
+			<ul type = "circle">
+				<li><i class="material-icons small">report_problem</i>
+				<strong>Error al realizar la operación:</strong></li>
+				<% @siniestro.errors.full_messages.each do |message| %>
+				<li><i class="material-icons tiny">error</i><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<h2>Siniestro</h2>
+	<div class="field">
+      <%= f.label :noSiniestro, "Número de siniestro" %>
+      <%= f.text_field :noSiniestro %>
+    </div>
+
+    <div class="field">
+      <%= f.label :usuario_id, "Asesor" %>
+      <%= f.select(:usuario_id, options_from_collection_for_select(@asesores, :id, :nombre)) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :aseguradora_id, "Aseguradora" %>
+      <%= f.select(:aseguradora_id, options_from_collection_for_select(@aseguradoras, :id, :nombre)) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :poliza, "Poliza" %>
+      <%= f.text_field :poliza %>
+    </div>
+
+    <div class="field">
+      <%= f.label :tipoEntrada, "Tipo entrada" %>
+      <%= f.select(:tipoEntrada, options_for_select([['Rodando', 1], ['En grua', 2], ['Transiito', 3], ['Pago daños', 4] ])) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :fechaEntrada, "Fecha de entrada" %>
+      <%= f.text_field :fechaEntrada, class:"datepicker" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :fechaSalida, "Fecha de salida" %>
+      <%= f.text_field :fechaSalida, class:"datepicker" %>
+    </div>    
+
+	<h2>Cliente</h2>
+	<input type="hidden" id="id_cliente", name="cliente_id">
+	<div class="field">
+    	<%= f.label "Nombre" %>
+    	<%= text_field(@cliente, :Nombre) %>
+  	</div>
+
+  	<div class="field">
+    	<%= f.label "Direccion" %>
+    	<%= text_field(@cliente, :Direccion) %>
+  	</div>
+
+  	<div class="field">
+    	<%= f.label "Telefono" %>
+    	<%= text_field(@cliente, :Telefono) %>
+  	</div>
+
+  	<div class="field">
+    	<%= f.label "Correo" %>
+    	<%= text_field(@cliente, :Correo) %>
+  	</div>
+	
+	<%= f.fields_for @siniestro.auto do |auto_form|%>
+		<h2>Auto</h2>
+
+		<div class="field">
+	    	<%= auto_form.label :Vin, "Numero de serie"%>
+	    	<%= auto_form.text_field :Vin %>
+	  	</div>
+
+	  	<div class="field">
+	    	<%= auto_form.label :Placas, "Placas"%>
+	    	<%= auto_form.text_field :Placas %>
+	  	</div>
+
+	  	<div class="field">
+	    	<%= auto_form.label :Marca, "Marca"%>
+	    	<%= auto_form.text_field :Marca %>
+	  	</div>
+
+	  	<div class="field">
+	    	<%= auto_form.label :Modelo, "Modelo"%>
+	    	<%= auto_form.text_field :Modelo %>
+	  	</div>
+
+	  	<div class="field">
+	    	<%= auto_form.label :Anio, "Año"%>
+	    	<%= auto_form.text_field :Anio %>
+	  	</div>
+
+	  	<div class="field">
+	    	<%= auto_form.label :Color, "Color"%>
+	    	<%= auto_form.text_field :Color %>
+	  	</div>
+	<% end %>
+
+	<div class="actions">
+      <%= f.submit "Registrar", class: "btn" %>
+    </div>
+<% end %>

@@ -1,0 +1,24 @@
+<table id="tablaSiniestros">
+	<thead>
+		<tr>
+			<th>No Siniestro</th>
+			<th>Cliente</th>
+			<th>Automovil</th>
+			<th>Aseguradora</th>
+			<th>Ingreso</th>
+			<th>Salida</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@siniestros.each do |s| %>
+		<tr>
+			<td><%= s.noOrden %></td>
+			<td><%= s.cliente.Nombre %></td>
+			<td><%= s.auto.Marca + ' ' + s.auto.Modelo + ' ' + s.auto.Anio %></td>
+			<td><%= s.aseguradora.nombre %></td>
+			<td><%= s.fechaEntrada %></td>
+			<td><%= s.fechaSalida %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

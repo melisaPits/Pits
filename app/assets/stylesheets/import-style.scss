@@ -1,0 +1,53 @@
+@import 'materialize';
+@import 'foundation-icons';
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,700';
+
+body{
+	margin: 0px !important;
+	min-height: 100% !important;
+}
+
+.brand-logo{
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	transition-property: background-color;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	transition-delay: 0s;
+}
+
+.brand-logo:hover{
+	background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+
+
+.container {
+	min-height:100% !important;
+	position:relative !important;
+	max-width: 100% !important;
+	min-width: 100% !important;
+}
+
+.body {
+	padding:10px;
+	padding-bottom:100px;   /* Height of the footer */
+}
+.footer {
+	position: fixed;
+	bottom:0;
+	width:100%;
+	height:60px;   /* Height of the footer */
+	
+	background: #343436;
+}
+
+.footer-container{
+	color: #d0d5e1;
+	text-align: center;
+}
+
+img{
+	width: 150px;
+	height: 150px;
+}
