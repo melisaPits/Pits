@@ -16,8 +16,8 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
   def create
     # raise params.to_yaml
     @contraseña_correo = params[:usuario][:password]
-    @user = Usuario.new(create_usuario_params)
-    if @user.save
+    @usuario = Usuario.new(create_usuario_params)
+    if @usuario.save
       # ActionGMailMailer.bienvenido_email(@user,@contraseña_correo).deliver
       redirect_to root_path, notice: "Se ha creado el usuario"
     else
