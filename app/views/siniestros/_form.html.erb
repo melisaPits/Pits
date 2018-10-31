@@ -21,7 +21,7 @@
 			</ul>
 		</div>
 	<% end %>
-	<% if @siniestro.cliente.errors.any? %>
+	<% if !@siniestro.cliente.nil? && @siniestro.cliente.errors.any? %>
 		<div class="alert">
 			<ul type = "circle">
 				<li><i class="material-icons small">report_problem</i>
