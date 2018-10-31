@@ -7,8 +7,8 @@ class Siniestro < ApplicationRecord
 
 	validates :noSiniestro, presence: true, length: { minimum: 1, maximum: 20}
 	validates :poliza, presence: true, length: { minimum: 3, maximum: 10}
-	validates :tipoEntrada, presence: true, length: { minimum: 4, maximum: 10}
-	validates :status, presence: true, numericality: true
+	validates :tipoEntrada, presence: true, numericality: {only_integer: true, greater_than: 0, less_than_or_equal_to: 4}
+	# validates :status, presence: true
 	validates :fechaEntrada, presence: true
 	validates :fechaSalida, presence: true
 

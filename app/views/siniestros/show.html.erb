@@ -191,6 +191,27 @@
                               </p>
                         </div>
                   </div>
+
+                  <div class="row">
+                        <div class="col s12">
+                              <label>Firma aquí:</label>
+                              <input type="file" accept="image/*" id="firma" hidden="hidden" class="'signature_pad_input'">
+                              <div class="signature_pad text-center">
+                                    <div class="signature_pad_body">
+                                    <canvas id="firma_canvas"></canvas>
+                              </div>
+                              <div class="signature_pad_footer">
+                                    <button type="button" class="btn btn-default signature_pad_clear">Limpiar</button>
+                              </div>
+                        </div>
+
+                        </div>
+                  </div>
+                  <div>
+                        <button class="btn" id="extrasGuardar">
+                              Guardar                        
+                        </button>
+                  </div>
             <% else %>
                   <div class="row">
                         <div class="col s12">
@@ -240,12 +261,9 @@
                               </p>
                         </div>
                   </div>
+                   <%= image_tag @extra.firma %>
             <% end %>
-            <div>
-                  <button class="btn" id="extrasGuardar">
-                        Guardar                        
-                  </button>
-            </div>
+            
       </div>
       <div class="col s8">
             <h2>Panoramicas</h2>
@@ -884,7 +902,7 @@
                               <div class="card-content file-field input-field">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
-                                          <input type="file" accept="image/*;capture=camera" id="25">
+                                          <input type="file" accept="image/*;capture=camera" id="f25">
                                     </div>
                                     <div class="file-path-wrapper" hidden="hidden">
                                           <input type="text" class="file-path">
@@ -909,7 +927,7 @@
                               <div class="card-content file-field input-field">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
-                                          <input type="file" accept="image/*;capture=camera" id="26">
+                                          <input type="file" accept="image/*;capture=camera" id="f26">
                                     </div>
                                     <div class="file-path-wrapper" hidden="hidden">
                                           <input type="text" class="file-path">

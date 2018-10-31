@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require materialize
+//= require signature-pad
 //= require_tree .

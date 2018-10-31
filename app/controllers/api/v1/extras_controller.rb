@@ -4,17 +4,21 @@ class Api::V1::ExtrasController < ApplicationController
 	before_action :set_token_siniestro
 
 	def create
-		extra = @siniestro.auto.build_extra(extra_params)
-		if extra.save
-			render :show	
+		if @siniestro.auto.extra.nil?
+			extra = @siniestro.auto.build_extra(extra_params)
+			if extra.save
+				render :show	
+			else
+				error!("Envia datos validos", :unprocessable_entity)
+			end
 		else
-			error!("Envia inventarios validos", :unprocessable_entity)
+			error!("Ya se han registrado los datos extra", :unprocessable_entity)
 		end
 	end
 
 	private
 	def extra_params
-		params.permit(:kilometraje, :bateria, :num_tapetes, :gasolina_litros, :comentarios, :descr_gral)
+		params.permit(:kilometraje, :bateria, :num_tapetes, :gasolina_litros, :comentarios, :descr_gral, :firma)
 	end
 
 end

@@ -42,6 +42,9 @@ gem 'material_icons'
 gem 'mini_magick', '~> 4.8'
 # gem 'image_processing', '~> 1.2'
 
+# Use signature rails
+gem 'signature-pad-rails'
+
 # Use amazon as storage 
 # gem "aws-sdk-s3", require: false
 

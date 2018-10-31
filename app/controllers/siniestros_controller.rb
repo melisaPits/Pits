@@ -29,13 +29,17 @@ class SiniestrosController < ApplicationController
 		@siniestro.usuario = @asesor
 		@siniestro.build_auto(auto_params)
 		@siniestro.cliente = @cliente
-		if @siniestro.save
-			redirect_to @siniestro, notice: "Se ha registrado correctamente el siniestro" 
-		else
-			set_aseguradoras
-			set_asesores
-			render :new
+		if @siniestro.auto.valid?
+			if @cliente.valid?
+				if @siniestro.save
+					redirect_to @siniestro, notice: "Se ha registrado correctamente el siniestro" 
+					return
+				end
+			end
 		end
+		set_aseguradoras
+		set_asesores
+		render :new
 	end
 
 	def edit
