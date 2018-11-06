@@ -25,7 +25,35 @@ $(document).ready(function(){
 				console.log(errorThrown);
 			}
 	  	});
-	  });
+	 });
+
+	$("#slider").roundSlider({
+		    sliderType: "min-range",
+		    editableTooltip: false,
+		    radius: 105,
+		    width: 16,
+		    value: gas_value,
+		    handleSize: 0,
+		    handleShape: "square",
+		    circleShape: "pie",
+		    startAngle: 315,
+		    tooltipFormat: "changeTooltip",
+		    disabled: gas_disabled
+		});
+
+	$(document).ready(function(){
+    $('.tabs').tabs();
+  });
+
+	function changeTooltip(e) {
+	    var val = e.value, speed;
+	    if (val < 20) speed = "Slow";
+	    else if (val < 40) speed = "Normal";
+	    else if (val < 70) speed = "Speed";
+	    else speed = "Very Speed";
+
+	    return val + " km/h" + "<div>" + speed + "<div>";
+	}
 
 	$("#f2").on("change", function(){
 		var file = $(this)[0].files[0];
@@ -773,10 +801,9 @@ $(function() {
 					data.append('usuario', $("#usuario").val());
 					data.append('siniestro', $("#siniestro").val());
 					data.append('kilometraje', $("#kilometraje").val());
-					data.append('kilometraje', $("#kilometraje").val());
 					data.append('bateria', $("#bateria").val());
 					data.append('num_tapetes', $("#num_tapetes").val());
-					data.append('gasolina_litros', $("#gasolina_litros").val());
+					data.append('gasolina_litros', $("input[name=slider]").val());
 					data.append('comentarios', $("#comentarios").val());
 					data.append('descr_gral', $("#descr_gral").val());
 	        		$.ajax({

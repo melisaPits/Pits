@@ -9,6 +9,7 @@ class Api::V1::ExtrasController < ApplicationController
 			if extra.save
 				render :show	
 			else
+				puts extra.errors.messages
 				error!("Envia datos validos", :unprocessable_entity)
 			end
 		else
