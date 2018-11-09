@@ -14,4 +14,8 @@ class Extra < ApplicationRecord
   	validates :firma, presence: true, blob: { content_type: :image }
   	validates :firma, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..5.megabytes }
 
+    has_one_attached :danos_preexistentes
+    validates :danos_preexistentes, presence: true, blob: { content_type: :image }
+    validates :danos_preexistentes, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..5.megabytes}
+
 end

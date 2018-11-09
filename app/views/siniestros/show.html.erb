@@ -1,6 +1,7 @@
+ <%= image_tag "autos.jpg", id: "autos", hidden: 'hidden'%>
  <div class="row">
       <div class="col s12">
-            <h2>Orden de ingreso</h2>
+            <h3>Orden de ingreso</h3>
       </div>
  </div>
  <div class="hidden" hidden="hidden">
@@ -11,7 +12,7 @@
        <input type="text" id="urlInventarios" value="<%= api_v1_inventarios_path %>">
        <input type="text" id="urlExtras" value="<%= api_v1_extras_path %>">
  </div>
- <div class="row">
+ <div class="row no-padding">
       <div class="col s6">
             <div class="field">
                   Número Orden:
@@ -95,7 +96,7 @@
       </div>
       <div id="test1" class="row">
             <div class="col s4">
-                  <h2>Exteriores</h2>
+                  <h5>Exteriores</h5>
                   <%@inventarioExteriores.each do |i| %>
                         <p>
                               <label>
@@ -110,9 +111,9 @@
                   <% end %>
             </div>
             <div class="col s8">
-                  <h2>Panoramicas</h2>
+                  <h5>Panoramicas</h5>
                         <div class="row">
-                        <div class="col s4">
+                        <div class="col s3">
                         <div class="card">
                               <div class="card-image">
                                     <% if @fotos.nil? %>
@@ -126,7 +127,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f1">
@@ -137,7 +138,7 @@
                               </div>
                         </div>
                   </div>
-                  <div class="col s4">
+                  <div class="col s3">
                         <div class="card">
                               <div class="card-image">
                                     <% if @fotos.nil? %>
@@ -151,7 +152,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn"
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f2" >
@@ -162,7 +163,7 @@
                               </div>
                         </div>                        
                   </div>
-                  <div class="col s4">
+                  <div class="col s3">
                         <div class="card">
                               <div class="card-image">
                                     <% if @fotos.nil? %>
@@ -176,7 +177,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f3">
@@ -187,9 +188,7 @@
                               </div>
                         </div>  
                   </div>
-            </div>
-            <div class="row">
-                  <div class="col s4">
+                  <div class="col s3">
                         <div class="card">
                               <div class="card-image">
                                     <% if @fotos.nil? %>
@@ -203,7 +202,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f4">
@@ -214,7 +213,9 @@
                               </div>
                         </div>
                   </div>
-                  <div class="col s4">
+            </div>
+            <div class="row"> 
+                  <div class="col s3">
                         <div class="card">
                               <div class="card-image">
                                     <% if @fotos.nil? %>
@@ -228,7 +229,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f5" >
@@ -239,7 +240,7 @@
                               </div>
                         </div>                        
                   </div>
-                  <div class="col s4">
+                  <div class="col s3">
                         <div class="card">
                               <div class="card-image">
                                     <% if @fotos.nil? %>
@@ -253,7 +254,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f6">
@@ -265,7 +266,7 @@
                         </div>  
                   </div>
             </div>
-            <h2>Lateral izquierdo</h2>
+            <h5>Lateral izquierdo</h5>
             <div class="row">
                   <div class="col s3">
                         <div class="card">
@@ -281,7 +282,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f7" >
@@ -306,7 +307,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f8">
@@ -331,7 +332,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f9">
@@ -356,7 +357,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f10">
@@ -368,7 +369,7 @@
                         </div>  
                   </div>
             </div>
-            <h2>Traseras</h2>
+            <h5>Traseras</h5>
             <div class="row">
                   <div class="col s3">
                         <div class="card">
@@ -384,7 +385,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f11">
@@ -409,7 +410,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f12">
@@ -434,7 +435,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f13">
@@ -459,7 +460,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f14">
@@ -471,7 +472,7 @@
                         </div>  
                   </div>
             </div>
-            <h2>Lateral derecho</h2>
+            <h5>Lateral derecho</h5>
             <div class="row">
                   <div class="col s3">
                         <div class="card">
@@ -487,7 +488,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f15">
@@ -512,7 +513,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f16">
@@ -537,7 +538,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f17">
@@ -562,7 +563,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f18">
@@ -574,7 +575,7 @@
                         </div>  
                   </div>
             </div>
-            <h2>Frontal</h2>
+            <h5>Frontal</h5>
             <div class="row">
                   <div class="col s3">
                         <div class="card">
@@ -590,7 +591,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f19">
@@ -615,7 +616,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f20">
@@ -640,7 +641,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f21">
@@ -665,7 +666,7 @@
                                           <% end %>
                                     <% end %>
                               </div>
-                              <div class="card-content file-field input-field">
+                              <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                     <div class="btn" accept="image/*;capture=camera">
                                           <span>Foto</span>
                                           <input type="file" accept="image/*;capture=camera" id="f22">
@@ -682,7 +683,7 @@
 
       <div id="test2" class="row">
             <div class="col s4">
-                  <h2>Interiores</h2>
+                  <h5>Interiores</h5>
                   <%@inventarioInteriores.each do |i| %>
                         <p>
                               <label>
@@ -697,7 +698,7 @@
                   <% end %>
             </div>
             <div class="col s8">
-                  <h2>Cajuela, interior y motor</h2>
+                  <h5>Cajuela, interior y motor</h5>
                   <div class="row">
                         <div class="col s3">
                               <div class="card">
@@ -713,7 +714,7 @@
                                                 <% end %>
                                           <% end %>
                                     </div>
-                                    <div class="card-content file-field input-field">
+                                    <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                           <div class="btn" accept="image/*;capture=camera">
                                                 <span>Foto</span>
                                                 <input type="file" accept="image/*;capture=camera" id="f23">
@@ -738,7 +739,7 @@
                                                 <% end %>
                                           <% end %>
                                     </div>
-                                    <div class="card-content file-field input-field">
+                                    <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                           <div class="btn" accept="image/*;capture=camera">
                                                 <span>Foto</span>
                                                 <input type="file" accept="image/*;capture=camera" id="f24">
@@ -763,7 +764,7 @@
                                                 <% end %>
                                           <% end %>
                                     </div>
-                                    <div class="card-content file-field input-field">
+                                    <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                           <div class="btn" accept="image/*;capture=camera">
                                                 <span>Foto</span>
                                                 <input type="file" accept="image/*;capture=camera" id="f25">
@@ -788,7 +789,7 @@
                                                 <% end %>
                                           <% end %>
                                     </div>
-                                    <div class="card-content file-field input-field">
+                                    <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
                                           <div class="btn" accept="image/*;capture=camera">
                                                 <span>Foto</span>
                                                 <input type="file" accept="image/*;capture=camera" id="f26">
@@ -806,7 +807,7 @@
 
     <div id="test3" class="row">
             <div class="col s12">
-                  <h2>Mecanica</h2>
+                  <h5>Mecanica</h5>
                         <%@inventarioMecanica.each do |i| %>
                               <p>
                                     <label>
@@ -828,7 +829,7 @@
       </div>
     
     <div id="test4" class="row">
-      <h2 style="text-align: center;">Extras</h2>
+      <h5 style="text-align: center;">Extras</h5>
       <% if @extra.nil? %>
                   <div class="col s4">
                         <p>
@@ -872,14 +873,36 @@
                   </div>
                         
                   <div class="col s4">
-                        <label>Firma aquí:</label>
+
+                        <!-- Modal Trigger -->
+                        <a class="modal-trigger" href="#modal1">Aviso de privacidad</a>
+
+                        <!-- Modal Structure -->
+                        <%= render '/partials/policy_advice' %>
+
+                        <div>
+                              <label>Firma aquí:</label>
+                        </div>
                               <input type="file" accept="image/*" id="firma" hidden="hidden" class="'signature_pad_input'">
                               <div class="signature_pad text-center">
                                     <div class="signature_pad_body">
                                     <canvas id="firma_canvas"></canvas>
                               </div>
                               <div class="signature_pad_footer">
-                                    <button type="button" class="btn btn-default signature_pad_clear">Limpiar</button>
+                                    <button type="button" id="firma_borrar" class="btn btn-default signature_pad_clear" >Limpiar</button>
+                              </div>
+                        </div>
+                  </div>
+
+                  <div class="col s4">
+                        <label>Daños preexistentes:</label>
+                              <input type="file" accept="image/*" id="danos" hidden="hidden" class="'signature_pad_input'">
+                              <div class="signature_pad text-center">
+                                    <div class="signature_pad_body">
+                                    <canvas id="danos_preexistentes"></canvas>
+                              </div>
+                              <div class="signature_pad_footer">
+                                    <button type="button" id="danos_pre" class="btn btn-default signature_pad_clear">Limpiar</button>
                               </div>
                         </div>
                   </div>
@@ -935,6 +958,9 @@
                   <div class="col s4">
                         <%= image_tag @extra.firma %>
                   </div>
+                  <div class="col s4">
+                        <%= image_tag @extra.danos_preexistentes %>
+                  </div>
                   
                   <script type="text/javascript">
                         var gas_value = <%= @extra.gasolina_litros %>;
@@ -945,3 +971,4 @@
             <% end %>
     </div>
 </div>
+

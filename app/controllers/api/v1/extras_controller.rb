@@ -19,7 +19,7 @@ class Api::V1::ExtrasController < ApplicationController
 
 	private
 	def extra_params
-		params.permit(:kilometraje, :bateria, :num_tapetes, :gasolina_litros, :comentarios, :descr_gral, :firma)
+		params.permit(:kilometraje, :bateria, :num_tapetes, :gasolina_litros, :comentarios, :descr_gral, :firma, :danos_preexistentes)
 	end
 
 end

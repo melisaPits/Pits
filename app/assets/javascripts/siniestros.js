@@ -782,21 +782,37 @@ $(document).ready(function(){
 });
 
 $(function() {
-	var canvas = document.querySelector("canvas");
+	var canvas = document.querySelector("#firma_canvas");
+	var danos_preexistentes = document.querySelector("#danos_preexistentes");
   	if (canvas){
-  		if(canvas.id === "firma_canvas"){
+  		if(canvas.id === "firma_canvas" && danos_preexistentes.id === "danos_preexistentes"){
 	    	canvas.height = canvas.offsetHeight;
 	    	canvas.width = canvas.offsetWidth;
+	    	danos_preexistentes.height = danos_preexistentes.offsetHeight;
+	    	danos_preexistentes.width = danos_preexistentes.offsetWidth;
 	    	//window.onresize = resizeCanvas(canvas);
 	    	resizeCanvas(canvas);
+	    	resizeCanvas(danos_preexistentes);
 	    	signature_pad = new SignaturePad(canvas);
-	    	$('.signature_pad_clear').click(function() { signature_pad.clear() });
+	    	signature_danos = new SignaturePad(danos_preexistentes);
+	    	var ctx = danos_preexistentes.getContext("2d");
+	    	var img = document.getElementById("autos");
+	    	var image = document.querySelector("#autos");
+	    	image.addEventListener('load', function(){
+	    		ctx.drawImage(img, 0, 0);
+	    	});    	
+	    	$('#firma_borrar').click(function() { signature_pad.clear() });
+	    	$('#danos_pre').click(function() { 
+	    		signature_danos.clear();
+		    	ctx.drawImage(img, 0, 0);
+	    	});
 	    	$('#extrasGuardar').click(function(event) { 
 	     		if (signature_pad.isEmpty()){
 	        		alert('Debes firmar');
 	      		} else {
 					const data = new FormData();
 				  	data.append('firma', base64ImageToBlob(signature_pad.toDataURL()));
+				  	data.append('danos_preexistentes', base64ImageToBlob(signature_danos.toDataURL()));
 					data.append('token', $("#token").val());
 					data.append('usuario', $("#usuario").val());
 					data.append('siniestro', $("#siniestro").val());
@@ -858,3 +874,15 @@ function base64ImageToBlob(str) {
 
   return blob;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+          
