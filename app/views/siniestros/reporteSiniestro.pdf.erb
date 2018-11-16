@@ -87,8 +87,8 @@
 	<div class="col S2" style="display:table-cell; vertical-align:middle; text-align:center">
 		<p>
 			<H5 style="color: #1a237e">DAÑOS PREEXISTENTES</H5>
-			<%= image_tag @extra.danos_preexistentes, class:'imageDanos' %><br />
-			<%= image_tag @extra.firma, class: 'imagFirma' %>
+			<%= wicked_pdf_image_tag @extra.danos_preexistentes, class:'imageDanos' %><br />
+			<%= wicked_pdf_image_tag @extra.firma, class: 'imagFirma' %>
 			<hr class="linea">
 			<H4 style= "margin-bottom: 0;">FIRMA DE CONFORMIDAD</H4>
 			<H7>Autorizo la revisión de los puntos de seguridad</H7>
