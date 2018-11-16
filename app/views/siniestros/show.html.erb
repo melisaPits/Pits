@@ -829,8 +829,8 @@
       </div>
     
     <div id="test4" class="row">
-      <h5 style="text-align: center;">Extras</h5>
       <% if @extra.nil? %>
+            <h5 style="text-align: center;">Extras</h5>
                   <div class="col s4">
                         <p>
                               <label for="kilometraje"> KM:</label>
@@ -916,6 +916,12 @@
                         var gas_disabled = false;
                   </script>
             <% else %>
+                  <h5 style="text-align: center;">
+                        Extras 
+                        <%= link_to siniestro_path(@siniestro, :format => :pdf) do %>
+                              <i class="material-icons">print</i>
+                        <% end %>
+                  </h5>
                   <div class="col s4">
                         <p>
                               <label for="kilometraje"> KM:</label>
@@ -966,8 +972,6 @@
                         var gas_value = <%= @extra.gasolina_litros %>;
                         var gas_disabled = true;
                   </script>
-
-                   
             <% end %>
     </div>
 </div>

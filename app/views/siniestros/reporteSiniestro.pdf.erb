@@ -1,0 +1,107 @@
+<H4 style="color: #1a237e">ORDEN DE INGRESO</H4>
+<hr>
+<div class="row">
+	<div class="colS3">
+		<p>
+			<strong>No. de orden: <%= @siniestro.noOrden %></strong><br /><br />
+			<strong>Entrada:</strong> <%= @siniestro.fechaEntrada %><br />
+			<strong>Salida tentativa:</strong> <%= @siniestro.fechaSalida %><br />
+			<strong>Placas:</strong> <%= @siniestro.auto.Placas %><br />
+			<strong>Serie:</strong> <%= @siniestro.auto.Vin %><br />
+			<strong>Vehiculo:</strong> <%= @siniestro.auto.Marca + ' ' + @siniestro.auto.Modelo + ' ' + @siniestro.auto.Anio %><br />
+		</p>
+	</div>
+	<div class="colS3">
+		<p>
+			<%= wicked_pdf_image_tag "logoPits.jpg"%>
+		</p>
+	</div>
+	<div class="colS3">
+		<p>
+			<strong>Asesor: <%= @siniestro.usuario.nombre %></strong><br /><br />
+			<strong>Cliente:</strong> <%= @siniestro.cliente.Nombre %><br />
+			<strong>Dirección:</strong> <%= @siniestro.cliente.Direccion %><br />
+			<strong>Aseguradora:</strong> <%= @siniestro.aseguradora.nombre %><br />
+			<strong>E-mail:</strong> <%= @siniestro.cliente.Correo %><br />
+			<strong>Telefono:</strong> <%=@siniestro.cliente.Telefono %><br />
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="colS1">
+		<H4 style="color: #1a237e">INVENTARIO</H4>
+		<hr>
+	</div>
+</div>
+<div class="row">
+	<div class="col s4">
+	<div class="colS5">
+		<H5 style="color: #1a237e">EXTERIORES</H5>
+		<%@inventarioExteriores.each do |i| %>
+            <p>
+                  <label>
+                        <% if @inventarios.find_by(inventario_id: i.id).nil? %>
+                              <input  type="checkbox" name="inventarios[]">
+                        <% else %>
+                              <input  type="checkbox" checked="checked" name="inventarios[]">
+                        <% end %>
+                        <span><%= i.nombre %></span>
+                  </label>
+            </p>
+      <% end %>
+	      <p>
+	      	<strong>Kilometraje:  </strong><%= @extra.kilometraje %><br/><br/>
+			<strong>Bateria:  </strong><%= @extra.bateria %><br/><br/>
+			<strong>No. de tapetes:  </strong><%= @extra.num_tapetes %><br/><br/>
+			<strong>Gasolina:  </strong><%= @extra.gasolina_litros %><br/><br/>
+	      </p>
+	</div>
+	<div class="colS3">
+		<H5 style="color: #1a237e">INTERIORES</H5>
+		<%@inventarioInteriores.each do |i| %>
+            <p>
+                  <label>
+                        <% if @inventarios.find_by(inventario_id: i.id).nil? %>
+                        <input  type="checkbox" name="inventarios[]" class="filled-in" value="<%= i.id %>">
+                        <% else %>
+                              <input  type="checkbox" checked="checked" name="inventarios[]" class="filled-in" value="<%= i.id %>" >
+                        <% end %>
+                        <span><%= i.nombre %></span>
+                  </label>
+            </p>
+      	<% end %>
+		<H5 style="color: #1a237e">MECANICA</H5>
+        <%@inventarioMecanica.each do |i| %>
+              <p>
+                    <label>
+                          <% if @inventarios.find_by(inventario_id: i.id).nil? %>
+                          <input  type="checkbox" name="inventarios[]" class="filled-in" value="<%= i.id %>">
+                          <% else %>
+                                <input  type="checkbox" checked="checked" name="inventarios[]" class="filled-in" value="<%= i.id %>" >
+                          <% end %>
+                          <span><%= i.nombre %></span>
+                    </label>
+              </p>
+        <% end %>
+	</div>
+	<div class="col S2" style="display:table-cell; vertical-align:middle; text-align:center">
+		<p>
+			<H5 style="color: #1a237e">DAÑOS PREEXISTENTES</H5>
+			<%= image_tag @extra.danos_preexistentes, class:'imageDanos' %><br />
+			<%= image_tag @extra.firma, class: 'imagFirma' %>
+			<hr class="linea">
+			<H4 style= "margin-bottom: 0;">FIRMA DE CONFORMIDAD</H4>
+			<H7>Autorizo la revisión de los puntos de seguridad</H7>
+		</p>
+	</div>
+</div>
+</div>
+
+<div class="row">
+	<div class="colS1">
+		<p>
+			<strong>Comentarios: </strong><%= @extra.comentarios %><br/><br/>
+			<strong>Descripción general del golpe: </strong><%= @extra.descr_gral %><br />
+		</p>
+	</div>
+</div>

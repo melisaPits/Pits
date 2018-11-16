@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_183819) do
+ActiveRecord::Schema.define(version: 2018_11_15_233054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,26 @@ ActiveRecord::Schema.define(version: 2018_10_19_183819) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "report_danos", force: :cascade do |t|
+    t.string "direccion"
+    t.string "transmision"
+    t.integer "noPuertas"
+    t.integer "noCilindro"
+    t.string "tipoAsientos"
+    t.string "tipoRin"
+    t.string "medidaLlanta"
+    t.string "eleCristal"
+    t.string "tipoEspejo"
+    t.string "tipoFaro"
+    t.string "farosNie"
+    t.integer "golpeMag"
+    t.text "comentario"
+    t.bigint "siniestros_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["siniestros_id"], name: "index_report_danos_on_siniestros_id"
+  end
+
   create_table "siniestros", force: :cascade do |t|
     t.string "noOrden"
     t.string "noSiniestro"
@@ -156,6 +176,7 @@ ActiveRecord::Schema.define(version: 2018_10_19_183819) do
   add_foreign_key "fotos_autos", "autos"
   add_foreign_key "inventario_autos", "autos"
   add_foreign_key "inventario_autos", "inventarios"
+  add_foreign_key "report_danos", "siniestros", column: "siniestros_id"
   add_foreign_key "siniestros", "aseguradoras"
   add_foreign_key "siniestros", "clientes"
   add_foreign_key "siniestros", "usuarios"

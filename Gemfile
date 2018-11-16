@@ -48,6 +48,10 @@ gem 'signature-pad-rails'
 # Use amazon as storage 
 # gem "aws-sdk-s3", require: false
 
+# Use PDF
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Use Google Cloud Storage
 gem "google-cloud-storage", "~> 1.11", require: false
 

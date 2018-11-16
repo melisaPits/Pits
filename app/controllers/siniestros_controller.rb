@@ -13,9 +13,20 @@ class SiniestrosController < ApplicationController
 
 	def index
 		@siniestros = Siniestro.all()
+
 	end
 
 	def show
+		respond_to do |format|
+			format.html
+			format.pdf {
+				render pdf: 'reporteSiniestro', 
+				type: 'application/pdf',
+				template: 'siniestros/reporteSiniestro',
+				layout: 'pdf.html',
+				disposition: 'attachment'
+			}
+		end
 	end
 
 	def new

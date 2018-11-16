@@ -829,7 +829,7 @@ $(function() {
 						contentType: false,
     					processData: false,
 						success: function(response){
-							console.log(response);
+							location.reload();
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							console.log(jqXHR);
