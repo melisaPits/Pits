@@ -32,43 +32,70 @@
 			</ul>
 		</div>
 	<% end %>
-	<h2>Siniestro</h2>
-	<div class="field">
-      <%= f.label :noSiniestro, "Número de siniestro" %>
-      <%= f.text_field :noSiniestro %>
-    </div>
+	<h5>Siniestro</h5>
+	<div class="row">
+		<div class="col s4">
+			<div class="field">
+				<p>
+					<%= f.label :noSiniestro, "Número de siniestro" %>
+			    	<%= f.text_field :noSiniestro %>
+			    </p>
+		    </div>
+		</div>
+		<div class="col s4">
+			<div class="field">
+				<p>
+					<%= f.label :usuario_id, "Asesor" %>
+		      		<%= f.select(:usuario_id, options_from_collection_for_select(@asesores, :id, :nombre)) %>
+			    </p>
+		    </div>
+		</div>
+		<div class="col s4">
+			<div class="field">
+				<p>
+					<%= f.label :aseguradora_id, "Aseguradora" %>
+		      		<%= f.select(:aseguradora_id, options_from_collection_for_select(@aseguradoras, :id, :nombre)) %>
+			    </p>
+		    </div>
+		</div>
+	</div>
 
-    <div class="field">
-      <%= f.label :usuario_id, "Asesor" %>
-      <%= f.select(:usuario_id, options_from_collection_for_select(@asesores, :id, :nombre)) %>
-    </div>
+	<div class="row">
+		<div class="col s3">
+			<div class="field">
+			    <p>
+			    	<%= f.label :poliza, "Poliza" %>
+		      		<%= f.text_field :poliza %>
+		      	</p>
+		    </div>
+		</div>
+		<div class="col s3">
+			<div class="field">
+				<p>
+					<%= f.label :tipoEntrada, "Tipo entrada" %>
+      				<%= f.select(:tipoEntrada, options_for_select([['Rodando', 1], ['En grua', 2], ['Transito', 3], ['Pago daños', 4] ])) %>
+			    </p>
+		    </div>
+		</div>
+		<div class="col s3">
+			<div class="field">
+		      	<p>
+		      		<%= f.label :fechaEntrada, "Fecha de entrada" %>
+     				<%= f.text_field :fechaEntrada, class:"datepicker" %>
+		      	</p>
+		    </div>
+		</div>
+		<div class="col s3">
+			<div class="field">
+		      	<p>
+		      		<%= f.label :fechaSalida, "Fecha de salida" %>
+      				<%= f.text_field :fechaSalida, class:"datepicker" %>
+		      	</p>
+		    </div>
+		</div>
+	</div>
 
-    <div class="field">
-      <%= f.label :aseguradora_id, "Aseguradora" %>
-      <%= f.select(:aseguradora_id, options_from_collection_for_select(@aseguradoras, :id, :nombre)) %>
-    </div>
-
-    <div class="field">
-      <%= f.label :poliza, "Poliza" %>
-      <%= f.text_field :poliza %>
-    </div>
-
-    <div class="field">
-      <%= f.label :tipoEntrada, "Tipo entrada" %>
-      <%= f.select(:tipoEntrada, options_for_select([['Rodando', 1], ['En grua', 2], ['Transiito', 3], ['Pago daños', 4] ])) %>
-    </div>
-
-    <div class="field">
-      <%= f.label :fechaEntrada, "Fecha de entrada" %>
-      <%= f.text_field :fechaEntrada, class:"datepicker" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :fechaSalida, "Fecha de salida" %>
-      <%= f.text_field :fechaSalida, class:"datepicker" %>
-    </div>    
-
-	<h2>Cliente</h2>
+	<h5>Cliente</h5>
 	<input type="hidden" id="id_cliente", name="cliente_id">
 	<div class="field">
     	<label for="Nombre"> Nombre</label>
@@ -89,40 +116,45 @@
     	<label for="Correo"> Correo</label>
         <input type="email" id="Correo" name="Correo" value=""/>
   	</div>
+
+	<div class="row">
+			<%= f.fields_for @siniestro.auto do |auto_form|%>
+				<h5>Auto</h5>
+				<div class="col s6">
+					<div class="field">
+						<p>
+							<%= auto_form.label :Vin, "Numero de serie"%>
+				    		<%= auto_form.text_field :Vin %>
+					    </p>
+					    <p>
+							<%= auto_form.label :Modelo, "Modelo"%>
+			    			<%= auto_form.text_field :Modelo %>
+					    </p>
+					    <p>
+							<%= auto_form.label :Color, "Color"%>
+			    			<%= auto_form.text_field :Color %>
+					    </p>
+					</div>
+				</div>
+				<div class="col s6">
+					<div class="field">
+					    <p>
+					    	<%= auto_form.label :Placas, "Placas"%>
+			    			<%= auto_form.text_field :Placas %>
+					    </p>
+					    <p>
+					    	<%= auto_form.label :Marca, "Marca"%>
+			    			<%= auto_form.text_field :Marca %>
+					    </p>
+					    <p>
+							<%= auto_form.label :Anio, "Año"%>
+			    			<%= auto_form.text_field :Anio %>
+					    </p>
+					</div>
+				</div>			
+			<% end %>
+		</div>
 	
-	<%= f.fields_for @siniestro.auto do |auto_form|%>
-		<h2>Auto</h2>
-
-		<div class="field">
-	    	<%= auto_form.label :Vin, "Numero de serie"%>
-	    	<%= auto_form.text_field :Vin %>
-	  	</div>
-
-	  	<div class="field">
-	    	<%= auto_form.label :Placas, "Placas"%>
-	    	<%= auto_form.text_field :Placas %>
-	  	</div>
-
-	  	<div class="field">
-	    	<%= auto_form.label :Marca, "Marca"%>
-	    	<%= auto_form.text_field :Marca %>
-	  	</div>
-
-	  	<div class="field">
-	    	<%= auto_form.label :Modelo, "Modelo"%>
-	    	<%= auto_form.text_field :Modelo %>
-	  	</div>
-
-	  	<div class="field">
-	    	<%= auto_form.label :Anio, "Año"%>
-	    	<%= auto_form.text_field :Anio %>
-	  	</div>
-
-	  	<div class="field">
-	    	<%= auto_form.label :Color, "Color"%>
-	    	<%= auto_form.text_field :Color %>
-	  	</div>
-	<% end %>
 
 	<div class="actions">
       <%= f.submit "Registrar", class: "btn" %>

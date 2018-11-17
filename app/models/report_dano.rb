@@ -1,3 +1,3 @@
 class ReportDano < ApplicationRecord
-  belongs_to :siniestros
+  belongs_to :siniestro
 end

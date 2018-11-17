@@ -14,7 +14,7 @@ class CreateReportDanos < ActiveRecord::Migration[5.2]
       t.string :farosNie
       t.integer :golpeMag
       t.text :comentario
-      t.references :siniestros, foreign_key: true
+      t.references :siniestro, foreign_key: true
 
       t.timestamps
     end

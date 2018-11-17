@@ -118,12 +118,9 @@ class SiniestrosController < ApplicationController
 	end
 
 	def set_imagenes
-		puts 1
 		unless @siniestro.nil?
-			puts 2
 			auto = @siniestro.auto
 			unless auto.nil?
-				puts 3
 				@fotos = auto.fotos_auto
 			end
 		end

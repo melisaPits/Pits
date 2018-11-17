@@ -114,10 +114,10 @@ ActiveRecord::Schema.define(version: 2018_11_15_233054) do
     t.string "farosNie"
     t.integer "golpeMag"
     t.text "comentario"
-    t.bigint "siniestros_id"
+    t.bigint "siniestro_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["siniestros_id"], name: "index_report_danos_on_siniestros_id"
+    t.index ["siniestro_id"], name: "index_report_danos_on_siniestro_id"
   end
 
   create_table "siniestros", force: :cascade do |t|
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_233054) do
   add_foreign_key "fotos_autos", "autos"
   add_foreign_key "inventario_autos", "autos"
   add_foreign_key "inventario_autos", "inventarios"
-  add_foreign_key "report_danos", "siniestros", column: "siniestros_id"
+  add_foreign_key "report_danos", "siniestros"
   add_foreign_key "siniestros", "aseguradoras"
   add_foreign_key "siniestros", "clientes"
   add_foreign_key "siniestros", "usuarios"

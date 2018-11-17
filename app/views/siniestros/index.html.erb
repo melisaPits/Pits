@@ -7,6 +7,7 @@
 			<th>Aseguradora</th>
 			<th>Ingreso</th>
 			<th>Salida</th>
+			<th>Acciones</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -18,6 +19,20 @@
 			<td><%= s.aseguradora.nombre %></td>
 			<td><%= s.fechaEntrada %></td>
 			<td><%= s.fechaSalida %></td>
+			<td>
+				<%= link_to siniestro_path(s) do %>
+                	<i class="material-icons">drive_eta</i>
+                <% end %>
+                <% if s.report_dano.nil? %>
+	                <%= link_to report_danos_path(s) do %>
+	                	<i class="material-icons">assignment</i>
+	                <% end %>
+	            <%  else %>
+	             	<%= link_to edit_report_dano_path(s, s.report_dano) do %>
+	                	<i class="material-icons">assignment</i>
+	                <% end %>
+	            <% end %>
+            </td>
 		</tr>
 		<% end %>
 	</tbody>

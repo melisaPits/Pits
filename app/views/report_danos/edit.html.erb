@@ -1,0 +1,174 @@
+<div class="row">
+      <div class="col s12">
+            <h4>Reporte de daños</h4>
+      </div>
+ </div>
+ <%= form_for @report_dano, url: report_dano_path(@siniestro, @report_dano) do |f| %>
+	<% if @report_dano.errors.any? %>
+		<div class="alert">
+			<ul type = "circle">
+				<li><i class="material-icons small">report_problem</i>
+				<strong>Error al realizar la operación:</strong></li>
+				<% @report_dano.errors.full_messages.each do |message| %>
+				<li><i class="material-icons tiny">error</i><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<div class="row">
+	    <div class="col s4">
+			    <p>
+			    	<%= f.label :direccion, "Dirección:" %>
+			    	<%= f.text_field :direccion %>
+			    </p>
+			    <p>
+			        <%= f.label :noCilindro, "No. de cilindros:" %>
+			        <%= f.text_field :noCilindro %>
+	    		</p>
+	    		<p>
+	    			<%= f.label :medidaLlanta, "Medida de llanta:" %>
+			        <%= f.text_field :medidaLlanta %>
+			    </p>
+			    <p>
+			    	<%= f.label :tipoFaro, "Tipo de faro:" %>
+			        <%= f.text_field :tipoFaro %>
+	    		</p>
+		</div>
+		<div class="col s4" class="input-field">
+		    	<p>
+		    		<%= f.label :transmision, "Transmisión:" %>
+			        <%= f.text_field :transmision %>
+				</p>
+				<p>
+					<%= f.label :tipoAsientos, "Tipo de asientos:" %>
+			        <%= f.text_field :tipoAsientos %>
+			    </p>
+			    <p>
+			    	<%= f.label :eleCristal, "Elevadores de cristal:" %>
+			        <%= f.text_field :eleCristal %>
+				</p>
+				<p>
+					<%= f.label :farosNie, "Faros niebla:" %>
+			        <%= f.text_field :farosNie %>
+			    </p>
+		</div>
+		<div class="col s4" class="input-field">
+		    	<p>
+		    		<%= f.label :noPuertas, "No. de puertas:" %>
+			        <%= f.text_field :noPuertas %>
+			    </p>
+			    <p>
+			    	<%= f.label :tipoRin, "Tipo rin:" %>
+			        <%= f.text_field :tipoRin %>
+			    </p>
+			    <p>
+			    	<%= f.label :tipoEspejo, "Tipo espejos:" %>
+			        <%= f.text_field :tipoEspejo %>
+			    </p>
+			    <p>
+			        <%= f.label :golpeMag, "Magnitud del golpe:" %>
+			        <%= f.select :golpeMag, options_for_select([['Leve', 1], ['Moderado', 2], ['Grave', 3], ['Complejo', 4]], @report_dano.golpeMag) %>
+			    </p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12" >
+			<h5>Fotos panorámicas y de serie</h5>
+		</div>
+	</div>
+		
+	<div class="row">
+	  <div class="col s4" class="input-field">
+		  	<p>
+		  		<% if @fotos.nil? %>
+                    <%= image_tag "01.png", id: "f1_img" %>
+              	<% else %>
+                    <% f = @fotos.select{|x| x.tipo == 1} %>
+                    <% if f[0].nil? %>
+                          <%= image_tag "01.png", id: "f1_img" %>
+                    <% else %>
+                          <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f1_img" %>
+                    <% end %>
+              	<% end %>
+		  	</p>
+		</div>
+		<div class="col s4" class="input-field">
+		    <p>
+		    	 <% if @fotos.nil? %>
+	                <%= image_tag "02.png", id: "f2_img" %>
+	          	<% else %>
+	                <% f = @fotos.select{|x| x.tipo == 2} %>
+	                <% if f[0].nil? %>
+	                      <%= image_tag "02.png", id: "f2_img" %>
+	                <% else %>
+	                      <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f2_img" %>
+	                <% end %>
+	          	<% end %>               
+		    </p>
+		</div>
+		<div class="col s4" class="input-field">
+			<p>
+				<% if @fotos.nil? %>
+                    <%= image_tag "03.png", id: "f3_img" %>
+              	<% else %>
+                    <% f = @fotos.select{|x| x.tipo == 3} %>
+                    <% if f[0].nil? %>
+                          <%= image_tag "03.png", id: "f3_img" %>
+                    <% else %>
+                          <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f3_img" %>
+                    <% end %>
+              	<% end %>
+			</p>
+		</div>
+		<div class="col s4" class="input-field">
+			<p>
+				<% if @fotos.nil? %>
+                    <%= image_tag "04.png", id: "f4_img" %>
+              	<% else %>
+                    <% f = @fotos.select{|x| x.tipo == 4} %>
+                    <% if f[0].nil? %>
+                          <%= image_tag "04.png", id: "f4_img" %>
+                    <% else %>
+                          <%= image_tag f[0].foto.variant(resize: "75X75"), id:"f4_img" %>
+                    <% end %>
+              	<% end %>
+			</p>
+		</div>
+		<div class="col s4" class="input-field">
+			<p>
+				<% if @fotos.nil? %>
+                    <%= image_tag "05.png", id: "f5_img" %>
+              	<% else %>
+                    <% f = @fotos.select{|x| x.tipo == 5} %>
+                    <% if f[0].nil? %>
+                          <%= image_tag "05.png", id: "f5_img" %>
+                    <% else %>
+                          <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f5_img" %>
+                    <% end %>
+              	<% end %>
+			</p>
+		</div>
+		<div class="col s4" class="input-field">
+			<p>
+				 <% if @fotos.nil? %>
+                    <%= image_tag "06.png", id: "f6_img" %>
+              	<% else %>
+                    <% f = @fotos.select{|x| x.tipo == 6} %>
+                    <% if f[0].nil? %>
+                          <%= image_tag "06.png", id: "f6_img" %>
+                    <% else %>
+                          <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f6_img" %>
+                    <% end %>
+              	<% end %>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+	  <div class="col s12" style="text-align: right;">
+	    	<button type="submit" class="btn" id="repotdanosGuardar">
+	         	Guardar                        
+	    	</button>
+		</div>
+	</div>
+<% end %>
