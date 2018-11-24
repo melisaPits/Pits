@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_233054) do
+ActiveRecord::Schema.define(version: 2018_11_23_224752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,22 @@ ActiveRecord::Schema.define(version: 2018_11_15_233054) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "operaciones", force: :cascade do |t|
+    t.boolean "trabExterno"
+    t.integer "costoTot"
+    t.integer "tipo"
+    t.string "manoObra"
+    t.string "refaccion"
+    t.integer "costoHojalateria"
+    t.integer "costoPintura"
+    t.integer "costoMecanica"
+    t.integer "status"
+    t.bigint "report_dano_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_dano_id"], name: "index_operaciones_on_report_dano_id"
+  end
+
   create_table "report_danos", force: :cascade do |t|
     t.string "direccion"
     t.string "transmision"
@@ -176,6 +192,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_233054) do
   add_foreign_key "fotos_autos", "autos"
   add_foreign_key "inventario_autos", "autos"
   add_foreign_key "inventario_autos", "inventarios"
+  add_foreign_key "operaciones", "report_danos"
   add_foreign_key "report_danos", "siniestros"
   add_foreign_key "siniestros", "aseguradoras"
   add_foreign_key "siniestros", "clientes"

@@ -6,6 +6,7 @@ class ReportDanosController < ApplicationController
 	before_action :buildReport, only: [:create]
 
 	def index
+		@report_dano.build_operacione
 	end
 
 	def show
@@ -64,15 +65,12 @@ class ReportDanosController < ApplicationController
 		end
 	end
 	def setReport
-		if @siniestro.report_dano.nil?
-			@report_dano = @siniestro.build_report_dano
-		end
+		@report_dano = ReportDano.new(siniestro: @siniestro)
 	end
 
 	def buildReport
-		if @siniestro.report_dano.nil?
-			@report_dano = @siniestro.build_report_dano(report_params)
-		end
+		@report_dano = @siniestro.build_report_dano(report_params)
+		@operacione = @report_dano.build_operacione(operacion_params)
 	end
 
 
@@ -81,4 +79,12 @@ class ReportDanosController < ApplicationController
 		params.require(:report_dano).permit(:direccion, :noCilindro, :medidaLlanta, :tipoFaro, 
 			:transmision, :tipoAsientos, :eleCristal, :farosNie, :noPuertas, :tipoRin, :tipoEspejo, :golpeMag)
 	end
+
+	private
+	def operacion_params
+		params[:report_dano].require(:operacione).permit(:trabExterno, :costoTot, :tipo, :manoObra, :refaccion, :costoHojalateria, 
+			:costoPintura, :costoMecanica, :status)
+		
+	end
+
 end
