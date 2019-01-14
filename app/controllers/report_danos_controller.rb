@@ -6,7 +6,7 @@ class ReportDanosController < ApplicationController
 	before_action :buildReport, only: [:create]
 
 	def index
-		@report_dano.build_operacione
+		@report_dano
 	end
 
 	def show
@@ -29,7 +29,7 @@ class ReportDanosController < ApplicationController
 	def create
 		if @report_dano.id.nil?
 			if @report_dano.save
-				redirect_to siniestros_path, notice: "Se ha registrado correctamente el reporte de daños"
+				redirect_to edit_report_dano_path(@siniestro,@siniestro.report_dano), notice: "Se ha registrado correctamente el reporte de daños"
 				return 
 			end
 		end
@@ -70,7 +70,6 @@ class ReportDanosController < ApplicationController
 
 	def buildReport
 		@report_dano = @siniestro.build_report_dano(report_params)
-		@operacione = @report_dano.build_operacione(operacion_params)
 	end
 
 
@@ -78,13 +77,6 @@ class ReportDanosController < ApplicationController
 	def report_params
 		params.require(:report_dano).permit(:direccion, :noCilindro, :medidaLlanta, :tipoFaro, 
 			:transmision, :tipoAsientos, :eleCristal, :farosNie, :noPuertas, :tipoRin, :tipoEspejo, :golpeMag)
-	end
-
-	private
-	def operacion_params
-		params[:report_dano].require(:operacione).permit(:trabExterno, :costoTot, :tipo, :manoObra, :refaccion, :costoHojalateria, 
-			:costoPintura, :costoMecanica, :status)
-		
 	end
 
 end
