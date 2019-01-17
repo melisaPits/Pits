@@ -64,6 +64,7 @@ class ReportDanosController < ApplicationController
 			redirect_to siniestro_path(@siniestro), alert: "Asegurate de registrar un auto"
 		end
 	end
+
 	def setReport
 		@report_dano = ReportDano.new(siniestro: @siniestro)
 	end
@@ -77,6 +78,13 @@ class ReportDanosController < ApplicationController
 	def report_params
 		params.require(:report_dano).permit(:direccion, :noCilindro, :medidaLlanta, :tipoFaro, 
 			:transmision, :tipoAsientos, :eleCristal, :farosNie, :noPuertas, :tipoRin, :tipoEspejo, :golpeMag)
+	end
+
+	private
+	def operacion_params
+		params[:report_dano].require(:operacione).permit(:trabExterno, :costoTot, :tipo, :manoObra, :refaccion, :costoHojalateria, 
+			:costoPintura, :costoMecanica, :status)
+
 	end
 
 end
