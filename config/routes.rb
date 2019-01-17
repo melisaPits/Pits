@@ -33,8 +33,8 @@ Rails.application.routes.draw do
   end
 
   namespece :api do 
-    namespece :V1 do
-      scope :report_dano do
+    namespece :v1 do
+      scope ':report_dano' do
         resurces :opercione, only: [:create, :update, :index, :show]
       end
     end
