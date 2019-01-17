@@ -32,6 +32,14 @@ Rails.application.routes.draw do
       end
   end
 
+  namespece :api do 
+    namespece :V1 do
+      scope :report_dano do
+        resurces :opercione, only: [:create, :update, :index, :show]
+      end
+    end
+  end
+
   # get-post-delete-put-patch '/nueva_camisa_de_rallas' => 'camisa#new', as: 'new_camisa_rallas'
 end
 
