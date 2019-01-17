@@ -29,9 +29,6 @@ Rails.application.routes.draw do
         resources :fotos_autos, controller: "fotos", only: [:create]
         post '/inventarios' => 'inventarios#create', only: [:create]
         resources :extras, controller: "extras", only: [:create]
-        scope ':report_dano' do
-        resurces :opercione, only: [:create, :update, :index, :show]
-      end
       end
   end
 
