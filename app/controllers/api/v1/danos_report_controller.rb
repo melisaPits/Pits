@@ -9,3 +9,4 @@ class Api::V1::DanosReportController < ApplicationController
 			end
 		end
 	end
+end
