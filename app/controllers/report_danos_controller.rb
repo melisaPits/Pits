@@ -6,7 +6,7 @@ class ReportDanosController < ApplicationController
 	before_action :buildReport, only: [:create]
 
 	def index
-		@report_dano.build_operacione
+		@report_dano
 	end
 
 	def show
@@ -71,6 +71,7 @@ class ReportDanosController < ApplicationController
 
 	def buildReport
 		@report_dano = @siniestro.build_report_dano(report_params)
+		@operacione = @report_dano.build_operacione(operacion_params)
 	end
 
 
