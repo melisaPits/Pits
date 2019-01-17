@@ -29,15 +29,10 @@ Rails.application.routes.draw do
         resources :fotos_autos, controller: "fotos", only: [:create]
         post '/inventarios' => 'inventarios#create', only: [:create]
         resources :extras, controller: "extras", only: [:create]
-      end
-  end
-
-  namespece :api do 
-    namespece :v1 do
-      scope ':report_dano' do
+        scope ':report_dano' do
         resurces :opercione, only: [:create, :update, :index, :show]
       end
-    end
+      end
   end
 
   # get-post-delete-put-patch '/nueva_camisa_de_rallas' => 'camisa#new', as: 'new_camisa_rallas'
