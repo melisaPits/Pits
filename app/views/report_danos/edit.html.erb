@@ -1,3 +1,9 @@
+<div class="hidden" hidden="hidden">
+	<input type="text" id="token" value="<%= @c_user.token.token %>">
+    <input type="text" id="usuario" value="<%= @c_user.id %>">
+    <input type="text" id="urloperacione" value="<%= api_v1_operaciones_path(@siniestro, @report_dano)%>">
+</div>
+
 <div class="row">
       <div class="col s12">
             <blockquote><h3>Reporte de daños</h3> <h6>Orden:<%= @siniestro.noOrden %> </h6></blockquote>
@@ -271,6 +277,14 @@
 	</div>
 
 	<div class="row">
+		<div class="col s12" style="text-align: right;">
+			<button type="submit" class="btn" id="manobraGuardar">
+		     	Guardar                        
+			</button>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col s12" >
 			<h5 style="background: #bbdefb;">Listado de mano de obra</h5>
 		</div>
@@ -315,10 +329,10 @@
 		    	<input type="file" accept="image/*" id="firmaasesor" hidden="hidden" class="'signature_pad_input'">
 	                <div class="signature_pad text-center">
 	                    <div class="signature_pad_body">
-	                        <canvas id="firma_canvas1"></canvas>
+	                        <canvas id="firma_asesor"></canvas>
 	                    </div>
 	                    <div class="signature_pad_footer">
-	                        <button type="button" id="firma_asesor" class="btn btn-default signature_pad_clear">Limpiar</button>
+	                        <button type="button" id="borrar_asesor" class="btn btn-default signature_pad_clear">Limpiar</button>
 	                    </div>
 	                </div>
 	        </div>
@@ -327,10 +341,10 @@
 		    	<input type="file" accept="image/*" id="firmapintor" hidden="hidden" class="'signature_pad_input'">
 	                <div class="signature_pad text-center">
 	                    <div class="signature_pad_body">
-	                        <canvas id="firma_canvas2"></canvas>
+	                        <canvas id="firma_pintor"></canvas>
 	                    </div>
 	                    <div class="signature_pad_footer">
-	                        <button type="button" id="firma_pintor" class="btn btn-default signature_pad_clear">Limpiar</button>
+	                        <button type="button" id="borrar_pintor" class="btn btn-default signature_pad_clear">Limpiar</button>
 	                    </div>
 	                </div>
 	        </div>
@@ -339,10 +353,10 @@
 		    	<input type="file" accept="image/*" id="firmahojala" hidden="hidden" class="'signature_pad_input'">
 	                <div class="signature_pad text-center">
 	                    <div class="signature_pad_body">
-	                        <canvas id="firma_canvas3"></canvas>
+	                        <canvas id="firma_hojala"></canvas>
 	                    </div>
 	                    <div class="signature_pad_footer">
-	                        <button type="button" id="firma_hoja" class="btn btn-default signature_pad_clear">Limpiar</button>
+	                        <button type="button" id="borrar_hoja" class="btn btn-default signature_pad_clear">Limpiar</button>
 	                    </div>
 	                </div>
 	        </div>
@@ -351,10 +365,10 @@
 		    	<input type="file" accept="image/*" id="firmamecanico" hidden="hidden" class="'signature_pad_input'">
 	                <div class="signature_pad text-center">
 	                    <div class="signature_pad_body">
-	                        <canvas id="firma_canvas4"></canvas>
+	                        <canvas id="firma_mecanico"></canvas>
 	                    </div>
 	                    <div class="signature_pad_footer">
-	                        <button type="button" id="firma_meca" class="btn btn-default signature_pad_clear">Limpiar</button>
+	                        <button type="button" id="borrar_meca" class="btn btn-default signature_pad_clear">Limpiar</button>
 	                    </div>
 	                </div>
 	        </div>

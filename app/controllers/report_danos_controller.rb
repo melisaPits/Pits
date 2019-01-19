@@ -71,7 +71,6 @@ class ReportDanosController < ApplicationController
 
 	def buildReport
 		@report_dano = @siniestro.build_report_dano(report_params)
-		@operacione = @report_dano.build_operacione(operacion_params)
 	end
 
 
