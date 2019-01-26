@@ -73,7 +73,7 @@
 	</div>
 		
 	<div class="row">
-	  <div class="col s4" class="input-field">
+	  <div class="col s3" class="input-field">
 		  	<p>
 		  		<% if @fotos.nil? %>
                     <%= image_tag "01.png", id: "f1_img" %>
@@ -87,7 +87,7 @@
               	<% end %>
 		  	</p>
 		</div>
-		<div class="col s4" class="input-field">
+		<div class="col s3" class="input-field">
 		    <p>
 		    	 <% if @fotos.nil? %>
 	                <%= image_tag "02.png", id: "f2_img" %>
@@ -101,7 +101,7 @@
 	          	<% end %>               
 		    </p>
 		</div>
-		<div class="col s4" class="input-field">
+		<div class="col s3" class="input-field">
 			<p>
 				<% if @fotos.nil? %>
                     <%= image_tag "03.png", id: "f3_img" %>
@@ -115,7 +115,7 @@
               	<% end %>
 			</p>
 		</div>
-		<div class="col s4" class="input-field">
+		<div class="col s3" class="input-field">
 			<p>
 				<% if @fotos.nil? %>
                     <%= image_tag "04.png", id: "f4_img" %>
@@ -153,6 +153,20 @@
                           <%= image_tag "06.png", id: "f6_img" %>
                     <% else %>
                           <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f6_img" %>
+                    <% end %>
+              	<% end %>
+			</p>
+		</div>
+		<div class="col s4" class="input-field">
+			<p>
+				 <% if @fotos.nil? %>
+                    <%= image_tag "27.png", id: "f27_img" %>
+              	<% else %>
+                    <% f = @fotos.select{|x| x.tipo == 27} %>
+                    <% if f[0].nil? %>
+                          <%= image_tag "27.png", id: "f27_img" %>
+                    <% else %>
+                          <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f27_img" %>
                     <% end %>
               	<% end %>
 			</p>

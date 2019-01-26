@@ -7,7 +7,6 @@ class Siniestro < ApplicationRecord
 	after_save :update_noOrden
 
 	validates :noSiniestro, presence: true, length: { minimum: 1, maximum: 20}
-	validates :poliza, presence: true, length: { minimum: 3, maximum: 10}
 	validates :tipoEntrada, presence: true, numericality: {only_integer: true, greater_than: 0, less_than_or_equal_to: 4}
 	# validates :status, presence: true
 	validates :fechaEntrada, presence: true

@@ -32,6 +32,11 @@ class ApplicationController < ActionController::Base
 	    render "api/v1/errors"
 	end
 
+	def errors!(status)
+		response.status = status
+		render "api/v1/errors"
+	end
+
 	def set_errors
 		@errors = []
 	end

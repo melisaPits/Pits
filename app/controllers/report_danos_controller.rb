@@ -1,4 +1,6 @@
 class ReportDanosController < ApplicationController
+	before_action :authenticate_user
+	before_action :authenticate_asesor!
 	before_action :set_siniestro, only: [:index, :edit, :create, :update]
 	before_action :set_report_dano, only: [:edit, :update]
 	before_action :set_imagenes, only: [:index, :edit]
@@ -14,6 +16,10 @@ class ReportDanosController < ApplicationController
 
 
 	def edit
+		unless @report_dano.operacione.nil?
+			@reparacion = @report_dano.operacione.reparacion
+			@sustitucion = @report_dano.operacione.sustitucion
+		end
 	end
 
 	def update

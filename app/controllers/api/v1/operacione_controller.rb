@@ -1,35 +1,43 @@
 class Api::V1::OperacioneController < ApplicationController
+	before_action :set_errors
 	before_action :validate_token_user
 	before_action :set_token_siniestro
+	before_action :set_siniestro
+	before_action :set_report_dano
 
-	#namespece :api do 
-	#	namespece :V1 do
-	#		scope :report_dano do
-	#			resurces :opercione, only: [:create, :update, :index, :show]
-	#		end
-	#	end
 	def create
-		if @siniestro.report_dano.operacione.nil?
-			operacione = @report_dano.build_operacione(operacione_params)
-			if @operacione.save
-				redirect_to edit_report_dano_path(@siniestro,@siniestro.report_dano,@siniestro.report_dano.operacione), notice: "Se ha registrado correctamente el reporte de daños"
-				return 
-			end
+		@operacione = Operacione.new(operacion_params)
+		@operacione.report_dano = @report_dano
+		unless @operacione.save
+			@errors << @operacione.errors.full_messages
+			@errors.push("reporte_dano" + @report_dano.to_s)
+			errors!(:unprocesable_entity)	
+			return
 		end
+		render :show
 	end
 
 	def set_siniestro
 		@siniestro = Siniestro.find(params[:siniestro])
 		if @siniestro.nil?
-			redirect_to siniestros_path, alert: "No existe el siniestro"
+			error!("El siniestro no existe", :unprocesable_entity)
+			return
 		end
 	end
 
 	def set_report_dano
-		@report_dano = ReportDano.find(params[:id])
-		if @report_dano.nil? && report_dano != @siniestro.report_dano
-			redirect_to siniestro_path, alert: "No has registrado el reporte de daños"
+		@report_dano = ReportDano.find(params[:reporte_danos])
+		if @report_dano.nil? || @report_dano != @siniestro.report_dano
+			error!("El reporte de daños no existe", :unprocesable_entity)
+			return
 		end
+	end
+
+	private
+	def operacion_params
+		params.require(:operacione).permit(:trabExterno, :costoTot, :tipo, :manoObra, :refaccion, :costoHojalateria, 
+			:costoPintura, :costoMecanica, :status)
+
 	end
 
 end

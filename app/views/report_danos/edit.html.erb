@@ -34,7 +34,7 @@
 		</div>
 
 	<div class="row">
-		<div class="col s7">
+		<div class="col s6">
 			<div class="row">
 				<hr class="linea" style="color: #bbdefb">
 		    	<div class="col s4">
@@ -105,12 +105,12 @@
 			</div>
 		</div>
 
-	<div class="col s5">
+	<div class="col s6">
 			<div class="row">
 				<hr class="linea" style="color: #bbdefb">
 				<h5 style="background: #bbdefb;">Fotos panorámicas y de serie</h5>
 
-			<div class="col s4" class="input-field">
+			<div class="col s3" class="input-field">
 			  	<p>
 			  		<% if @fotos.nil? %>
 	                    <%= image_tag "01.png", id: "f1_img" %>
@@ -125,7 +125,7 @@
 			  	</p>
 			</div>
 
-			<div class="col s4" class="input-field">
+			<div class="col s3" class="input-field">
 			    <p>
 			    	 <% if @fotos.nil? %>
 		                <%= image_tag "02.png", id: "f2_img" %>
@@ -140,7 +140,7 @@
 			    </p>
 			</div>
 
-			<div class="col s4" class="input-field">
+			<div class="col s3" class="input-field">
 				<p>
 					<% if @fotos.nil? %>
 	                    <%= image_tag "03.png", id: "f3_img" %>
@@ -155,7 +155,7 @@
 				</p>
 			</div>
 
-			<div class="col s4" class="input-field">
+			<div class="col s3" class="input-field">
 				<p>
 					<% if @fotos.nil? %>
 	                    <%= image_tag "04.png", id: "f4_img" %>
@@ -199,6 +199,21 @@
 	              	<% end %>
 				</p>
 			</div>
+
+			<div class="col s4" class="input-field">
+				<p>
+					 <% if @fotos.nil? %>
+	                    <%= image_tag "27.png", id: "f27_img" %>
+	              	<% else %>
+	                    <% f = @fotos.select{|x| x.tipo == 27} %>
+	                    <% if f[0].nil? %>
+	                          <%= image_tag "27.png", id: "f27_img" %>
+	                    <% else %>
+	                          <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f27_img" %>
+	                    <% end %>
+	              	<% end %>
+				</p>
+			</div>
 		</div>
 	</div>
 </div>
@@ -226,13 +241,13 @@
 			</p>
 			<p>
 				<label>
-					<input type="radio"  id="reparar" type="text" class="validate">
+					<input type="radio" name="tipo" id="reparar" type="text" class="validate">
 					<span>Reparar</span>
 				</label>
 			</p>
 			<p>
 				<label>
-					<input type="radio"  id="sustitucion" type="text" class="validate">
+					<input type="radio" name="tipo" id="sustitucion" type="text" class="validate">
 					<span>Sustitución</span>
 				</label>
 			</p>
@@ -259,19 +274,19 @@
 		<div class="col s4" style="text-align: center;">
 		   	<p>
 		    	<label>Hojalateria:</label>
-		    	<input id="rdH" name="rdH" class="form-control" type="number" step=".001" min="0">
+		    	<input id="rdH" name="rdH" class="validate" type="number" step=".001" min="0">
 		    </p>
 		</div>
 		<div class="col s4" style="text-align: center;">
 			<p>
 		    	<label>Pintura:</label>
-		    	<input id="rdP" name="operaciones[]" class="form-control" type="number" step=".001" min="0">
+		    	<input id="rdP" name="operaciones[]" class="validate" type="number" step=".001" min="0">
 		    </p>
 		</div>
 		<div class="col s4" style="text-align: center;">
 			<p>
 		    	<label>Mecánica:</label>
-		    	<input id="rdM" name="rdM" class="form-control" type="number" step=".001" min="0">
+		    	<input id="rdM" name="rdM" class="validate" type="number" step=".001" min="0">
 		    </p>
 		</div>
 	</div>
@@ -310,6 +325,7 @@
 			<table id="tablarefacciones">
 				<thead>
 					<tr>
+						<th>Operación</th>
 						<th>Refacción</th>
 						<th>Costo C.</th>
 						<th>Precio V.</th>
@@ -373,3 +389,12 @@
 	                </div>
 	        </div>
 	</div>
+
+	<script>
+		var reparacion =  <%= raw @reparacion.to_json %>;
+		var sustitucion =  <%= raw @sustitucion.to_json %>;
+
+		$(document).ready(function(){
+			llenarTablas();
+		});
+	</script>

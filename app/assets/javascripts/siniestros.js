@@ -755,6 +755,34 @@ $(document).ready(function(){
 	  	});
 	});
 
+		$("#f27").on("change", function(){
+		var file = $(this)[0].files[0];
+		const data = new FormData();
+		/*fileList.forEach((file) => {
+			data.append('foto', file);
+	  	});*/
+	  	data.append('foto', file);
+	  	data.append('tipo', 27);
+		data.append('token', $("#token").val());
+		data.append('usuario', $("#usuario").val());
+		data.append('siniestro', $("#siniestro").val());
+	  	$.ajax({
+	    	url: $("#urlFotos").val(),
+	    	method: "POST",
+	    	data: data,
+	    	contentType: false,
+    		processData: false,
+	    	success: function(response){
+	    		$("#f27_img").attr('src', response.data.imageURL);
+	    	},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+	  	});
+	  });
+
 	$("#inventGuardar").on("click", function(){
 		var inventarios = [];
 		$("input:checkbox:checked").each(function() { 

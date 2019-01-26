@@ -1,8 +1,7 @@
 <div class="row">
-	<h4>Reporte de daños</h4>
-</div>
- <div class="row" style="text-align: right; color: #b71c1c;">
- 	<h5>Orden: <%= @siniestro.noOrden%></h5>
+      <div class="col s12">
+            <blockquote><h3>Reporte de daños</h3> <h6>Orden:<%= @siniestro.noOrden %> </h6></blockquote>
+      </div>
  </div>
  <%= form_for @report_dano do |g| %>
 	<% if @report_dano.errors.any? %>
@@ -41,7 +40,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col s7">
+		<div class="col s6">
 			<div class="row">
 			<hr class="linea" style="color: #bbdefb">
 		    	<div class="col s4">
@@ -101,12 +100,12 @@
 			</div>
 		</div>
 
-		<div class="col s5">
+		<div class="col s6">
 			<div class="row">
 				<hr class="linea" style="color: #bbdefb">
 				<h5 style="background: #bbdefb;">Fotos panorámicas y de serie</h5>
 
-			<div class="col s4" class="input-field">
+			<div class="col s3" class="input-field">
 			  	<p>
 			  		<% if @fotos.nil? %>
 	                    <%= image_tag "01.png", id: "f1_img" %>
@@ -121,7 +120,7 @@
 			  	</p>
 			</div>
 
-			<div class="col s4" class="input-field">
+			<div class="col s3" class="input-field">
 			    <p>
 			    	 <% if @fotos.nil? %>
 		                <%= image_tag "02.png", id: "f2_img" %>
@@ -136,7 +135,7 @@
 			    </p>
 			</div>
 
-			<div class="col s4" class="input-field">
+			<div class="col s3" class="input-field">
 				<p>
 					<% if @fotos.nil? %>
 	                    <%= image_tag "03.png", id: "f3_img" %>
@@ -151,7 +150,7 @@
 				</p>
 			</div>
 
-			<div class="col s4" class="input-field">
+			<div class="col s3" class="input-field">
 				<p>
 					<% if @fotos.nil? %>
 	                    <%= image_tag "04.png", id: "f4_img" %>
@@ -191,6 +190,20 @@
 	                          <%= image_tag "06.png", id: "f6_img" %>
 	                    <% else %>
 	                          <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f6_img" %>
+	                    <% end %>
+	              	<% end %>
+				</p>
+			</div>
+			<div class="col s4" class="input-field">
+				<p>
+					 <% if @fotos.nil? %>
+	                    <%= image_tag "27.png", id: "f27_img" %>
+	              	<% else %>
+	                    <% f = @fotos.select{|x| x.tipo == 27} %>
+	                    <% if f[0].nil? %>
+	                          <%= image_tag "27.png", id: "f27_img" %>
+	                    <% else %>
+	                          <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f27_img" %>
 	                    <% end %>
 	              	<% end %>
 				</p>

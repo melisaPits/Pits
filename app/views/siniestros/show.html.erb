@@ -265,6 +265,31 @@
                                     </div>
                               </div>  
                         </div>
+                        <div class="col s3">
+                              <div class="card">
+                                    <div class="card-image">
+                                          <% if @fotos.nil? %>
+                                                <%= image_tag "27.png", id: "f27_img" %>
+                                          <% else %>
+                                                <% f = @fotos.select{|x| x.tipo == 27} %>
+                                                <% if f[0].nil? %>
+                                                      <%= image_tag "27.png", id: "f27_img" %>
+                                                <% else %>
+                                                      <%= image_tag f[0].foto.variant(resize: "75X75"), id: "f27_img" %>
+                                                <% end %>
+                                          <% end %>
+                                    </div>
+                                    <div class="file-field input-field" style="align-content: center;padding-left: 30%;">
+                                          <div class="btn-new">
+                                                <span>Foto</span>
+                                                <input type="file" accept="image/*" capture id="f6">
+                                          </div>
+                                          <div class="file-path-wrapper" hidden="hidden">
+                                                <input type="text" class="file-path">
+                                          </div>
+                                    </div>
+                              </div>  
+                        </div>
                   </div>
                   <h5>Lateral izquierdo</h5>
                   <div class="row">
