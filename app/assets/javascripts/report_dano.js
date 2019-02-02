@@ -48,6 +48,7 @@ $(document).ready(function(){
 			}
 			else{
 				alert("selecciona una opción");
+				return;
 			}
 		data.append('token', $("#token").val());
 		data.append('usuario', $("#usuario").val());
@@ -57,6 +58,15 @@ $(document).ready(function(){
 		data.append('operacione[costoPintura]', $("#rdP").val());
 		data.append('operacione[costoMecanica]', $("#rdM").val());
 
+		var tam = document.getElementById('multiFiles').files.length;
+		alert(tam);
+		for (var x = 0; x < tam; x++){
+			data.append("fotos[]", document.getElementById('multiFiles').files[x]);
+		}
+		/*for (var pair of data.entries()) {
+		    console.log(pair[0]+ ', ' + pair[1]); 
+		}
+		return;*/
 			$("#refaccion").val("");
 			$("#manoObra").val("");
 
@@ -97,7 +107,6 @@ $(document).ready(function(){
 				console.log(errorThrown);
 			}
 		});
-
 	});
 });
 

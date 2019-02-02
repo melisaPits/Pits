@@ -14,6 +14,7 @@ class Api::V1::OperacioneController < ApplicationController
 			errors!(:unprocesable_entity)	
 			return
 		end
+		@operacione.fotos.attach(params[:fotos])
 		render :show
 	end
 
