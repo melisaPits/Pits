@@ -7,7 +7,7 @@ class Auto < ApplicationRecord
 
   	validates :Vin, presence: true, length: { is: 17 }
   	validates :Placas, presence: true, length: { minimum: 3, maximum: 7 }
-  	validates :Marca, presence: true, length: { minimum: 4, maximum: 25 }
+  	validates :Marca, presence: true, length: { minimum: 2, maximum: 25 }
   	validates :Modelo, presence: true, length: { minimum: 4, maximum: 25 }
   	validates :Anio, presence: true, numericality: true
   	validates :Color, presence: true, length: { minimum: 4, maximum: 10 }

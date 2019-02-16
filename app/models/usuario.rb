@@ -10,10 +10,10 @@ class Usuario < ApplicationRecord
 
   validates :email, email: true, uniqueness: true, length: { maximum: 50}
   validates :nombreUsuario, presence: true, uniqueness: true, length: { minimum: 3, maximum: 30} 
-  validates :nombre, presence: true, length: { minimum: 7, maximum: 50}
+  validates :nombre, presence: true, length: { minimum: 3, maximum: 50}
   validates_plausible_phone :celular, presence: true
   before_validation :set_phone
-  validates :tipo, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 3}
+  validates :tipo, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 4}
 
   def admin?
   	self.tipo == 1
@@ -25,6 +25,10 @@ class Usuario < ApplicationRecord
 
   def asesor?
   	self.tipo == 3
+  end 
+
+   def otros?
+    self.tipo == 4
   end 
 
   def email=(address)

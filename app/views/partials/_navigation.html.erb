@@ -9,6 +9,11 @@
   <li><%= link_to "Lista siniestro", siniestros_path%></li>
 </ul>
 <% end %>
+<ul id="dropdown3" class="dropdown-content">
+  <li><%= link_to "Usuarios", operarios_path%></li>
+  <li><%= link_to "Clientes", clientes_path%></li>
+  <li><%= link_to "Proveedores", provedors_path%></li>
+</ul>
 <% end %>
 
 <nav>
@@ -47,6 +52,18 @@
       <% else %>
         <li><%= link_to "Iniciar sesión", new_usuario_session_path %></li>
       <% end %>
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header">Catálogo<i class="material-icons">arrow_drop_down</i></a>
+          <div class="collapsible-body">
+            <ul>
+              <li><%= link_to "Usuarios", operarios_path %></li>
+              <li><%= link_to "Clientes", clientes_path %></li>
+              <li><%= link_to "Proveedores", provedors_path%></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </ul>
 
     <!-- Navbar-->
@@ -57,10 +74,12 @@
         <% else %>
           <li><%= link_to "Registrar nuevo usuario", new_usuario_registration_path %></li>
         <% end %>
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Cuenta<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown3">Catálogos<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Cuenta<i class="material-icons right">arrow_drop_down</i></a></li>
       <% else %>
         <li><%= link_to "Iniciar sesión", new_usuario_session_path %></li>
       <% end %>
+      
     </ul>
   </div>
 </nav>

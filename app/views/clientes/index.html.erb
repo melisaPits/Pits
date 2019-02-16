@@ -1,13 +1,30 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+      <div class="col s12">
+            <blockquote><h3>Catálogo Clientes</h3></blockquote>
+      </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s6"><a class="active" href="#test1">Registrar</a></li>
+      <li class="tab col s6"><a href="#test2">Registrados</a></li>
+    </ul>
+  </div>
 
-<h1>Clientes</h1>
+<div id="test1" class="col s12">
+  <h5 style="background: #bbdefb;">Registrar nuevo cliente</h5>
+  <%= render partial: "form"%>
+</div>
 
+<div id="test2" class="col s12">
+  <h5 style="background: #bbdefb;">Listado de clientes</h5>
 <table>
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Direccion</th>
-      <th>Telefono</th>
+      <th>Dirección</th>
+      <th>Teléfono</th>
       <th>Correo</th>
       <th colspan="3"></th>
     </tr>
@@ -20,14 +37,12 @@
         <td><%= cliente.Direccion %></td>
         <td><%= cliente.Telefono %></td>
         <td><%= cliente.Correo %></td>
-        <td><%= link_to 'Show', cliente %></td>
-        <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
-        <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
+        <td><%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: 'Esta seguro que desea eliminar?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
+</div>
 <br>
-
-<%= link_to 'New Cliente', new_cliente_path %>

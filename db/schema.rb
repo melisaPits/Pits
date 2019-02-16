@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_26_035833) do
+ActiveRecord::Schema.define(version: 2019_02_16_054933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,16 @@ ActiveRecord::Schema.define(version: 2019_01_26_035833) do
     t.integer "costoC"
     t.integer "precioV"
     t.index ["report_dano_id"], name: "index_operaciones_on_report_dano_id"
+  end
+
+  create_table "provedors", force: :cascade do |t|
+    t.string "provedor"
+    t.string "contacto"
+    t.string "telefono1"
+    t.string "telefono2"
+    t.string "correo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "report_danos", force: :cascade do |t|

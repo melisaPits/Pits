@@ -1,0 +1,3 @@
+class Provedor < ApplicationRecord
+	
+end

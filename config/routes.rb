@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :provedors
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
   # Devise routes for user management
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
   # Clients routes for clients management
-  resources :clientes, only: [:index, :edit, :update]
+  resources :clientes, only: [:index, :edit, :update, :create, :destroy]
   # Aseguradoras routes for aseguradoras management
   resources :aseguradoras, except: [:destroy]
   # Siniestro routes for siniestro management
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
   scope ':siniestro' do
     resources :report_danos, only: [:index, :show, :edit, :update, :create]
   end 
+
+  resources :operarios, only: [:index]
 
   namespace :api, defaults: { format: "json" } do
       namespace :v1 do

@@ -1,0 +1,53 @@
+  <h5 style="background: #bbdefb;">Registrar nuevo usuario</h5>
+
+  <%= form_for(@usuario, url:  usuario_registration_path) do |f| %>
+    
+<div class="row">
+  <div class="col s4">
+      <p>
+        <%= f.label :tipo, "Tipo de usuario" %>
+        <%= f.select(:tipo, options_for_select([['Administrador', 1], ['Secretaria(o)', 2], ['Asesor', 3], ['Otros',4]])) %>
+      </p>
+      <p>
+        <%= f.label :password, "Contraseña"%>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> caracteres mínimos)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </p>
+      <p>
+        <%= f.label :celular, "Celular" %>
+        <%= f.text_field :celular%>
+      </p>
+  </div>
+
+  <div class="col s4">
+    <p>
+      <%= f.label :nombreUsuario, "Nombre de usuario" %>
+      <%= f.text_field :nombreUsuario %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation, "Confirma tu contraseña" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </p>
+  </div>
+
+  <div class="col s4">
+    <p>
+      <%= f.label :nombre, "Nombre completo" %>
+      <%= f.text_field :nombre %>
+    </p>
+    <p>
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </p>
+  </div>
+    
+</div>
+ 
+ <div class="col s12" align="right">
+  <div class="actions">
+    <%= f.submit "Registrar", class: "btn" %>
+  </div>
+</div>
+  <% end %>

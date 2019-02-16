@@ -11,4 +11,5 @@ class Operacione < ApplicationRecord
   	def classname
 		"Reporte daños"
 	end
+
 end

@@ -4,7 +4,6 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
   
   skip_before_action :require_no_authentication
   before_action :authenticate_user
-  before_action :authenticate_admin!, only: [:new, :create]
 
   # GET /resource/sign_up
   def new
@@ -19,7 +18,7 @@ class Usuarios::RegistrationsController < Devise::RegistrationsController
     @usuario = Usuario.new(create_usuario_params)
     if @usuario.save
       # ActionGMailMailer.bienvenido_email(@user,@contraseña_correo).deliver
-      redirect_to root_path, notice: "Se ha creado el usuario"
+      redirect_to operarios_path, notice: "Se ha creado el usuario"
     else
       render :new
     end
